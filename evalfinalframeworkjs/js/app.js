@@ -2,15 +2,16 @@
 var vueltas = function(){
   $(".main-titulo").animate({
    color: "#FFFFFF"
-}, 2500,function(){
+}, 1500,function(){
       $(this).animate({
-        color:"#FFE900"},2500)
+        color:"#FFE900"},1500)
       });
 }
 var bucle = function(){
   vueltas();
-  setTimeout("bucle();",7000)
+  setTimeout("bucle();",2000)
 }
 $(document).ready(function(){
   bucle();
 });
+//llenar tablero con dulce aleatoriamente

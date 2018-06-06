@@ -40,3 +40,26 @@ $(document).ready(function(){
 
   })
 })*/
+var imagenes = ['image/1.png','image/2.png', 'image/3.png', 'image/4.png'];
+var numimagenes = imagenes.length;
+
+$(function(){
+
+//imagenes aleatorias
+  function imagenAleatoria() {
+      var imgpuesta = Math.floor((Math.random() * numimagenes));
+      return imagenes[imgpuesta];
+  }
+
+
+
+})
+// funcion para boton iniciar
+$(function(){
+  $(".btn-reinicio").click(function(){
+    $(".btn-reinicio").text("Reiniciar");
+    $(".btn-reinicio").click(function(){
+        location.reload();
+    })
+  })
+});

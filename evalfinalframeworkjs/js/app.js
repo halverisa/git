@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 
 //funcion para cambiar texto boton iniciar
-$(function(){
+/*$(function(){
   $(".btn-reinicio").click(function(){
     $(".btn-reinicio").text("Reiniciar");
     $(".btn-reinicio").click(function(){
@@ -39,4 +39,4 @@ $(function(){
     // $(".col-3, .col-6").html("<div><img src=image/"+aleatorio2+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>"+ "<div class='cuadro'><img src=image/"+aleatorio1+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio3+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio4+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio2+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>");
 
   })
-})
+})*/

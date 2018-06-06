@@ -40,8 +40,9 @@ $(document).ready(function(){
 
   })
 })*/
-var imagenes = ['image/1.png','image/2.png', 'image/3.png', 'image/4.png'];
+var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
 var numimagenes = imagenes.length;
+var imgpuesta
 
 $(function(){
 
@@ -50,16 +51,21 @@ $(function(){
       var imgpuesta = Math.floor((Math.random() * numimagenes));
       return imagenes[imgpuesta];
   }
+// funcion crear tablero de imagenes
+ function creardivs() {
+   $(".col-1, .col-4, .col-7").html("<div class= 'cuadro'><img src=image/"+numimagenes+".png class='elemento'></img></div>");
+ }
+
+ // funcion para boton iniciar
+ $(".btn-reinicio").click(btniniciar);
+ function btniniciar(){
+     $('.btn-reinicio').text('Reiniciar');
+     creardivs();
+     $('.btn-reinicio').click(function(){
+       location.reload();
+     })
+  }
 
 
 
 })
-// funcion para boton iniciar
-$(function(){
-  $(".btn-reinicio").click(function(){
-    $(".btn-reinicio").text("Reiniciar");
-    $(".btn-reinicio").click(function(){
-        location.reload();
-    })
-  })
-});

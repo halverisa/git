@@ -1,34 +1,24 @@
-//funcion para animar texto
-var vueltas = function(){
-  $(".main-titulo").animate({
-   color: "#FFFFFF"
-}, 1500,function(){
-      $(this).animate({
-        color:"#FFE900"},1500)
-      });
-}
-var bucle = function(){
-  vueltas();
-  setTimeout("bucle();",2000)
-}
 $(document).ready(function(){
-  bucle();
 
-});
-//variables globales
-
-var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
-var numimagenes = imagenes.length;
-var puntuacion = [10, 50, 75, 100, 150, 200, 250,300,325,350,375,400,425,450];
-var imgpuesta=0;
-var movimiento = null;
-var dimension=7;
-var matriz =[];
-var arrastre = null;
-var puntos = 0;
-var movimientos = 0;
-var validezImg = 0;
 $(function(){
+
+// funcion para animar el texto
+
+    var vueltas = function(){
+      $(".main-titulo").animate({
+       color: "#FFFFFF"
+    }, 1500,function(){
+          $(this).animate({
+            color:"#FFE900"},1500)
+          });
+    }
+    var bucle = function(){
+      vueltas();
+      setTimeout("bucle();",2000)
+    }
+    bucle();
+
+
 
 //imagenes aleatorias
   function imgaleatoria() {
@@ -452,7 +442,66 @@ function tablero(f, c, obj, src){
        location.reload();
      })
   }
+  // Temporizador
+  function contadorTiempo() {
+      tiempoRestante -= 1;
+      console.log(tiempoRestante);
+      actualizarTiempo();
+      if (tiempoRestante === 0) {
+          return finalizacion();
+      }
+      tiempo = setTimeout(contadorTiempo, 1000);
+  }
+  function actualizarTiempo() {
+      $('#timer').html(formatoTiempo(tiempoRestante));
+  }
 
+  function iniciarTiempo() {
+      tiempoRestante = tiempoJuego;
+      tiempo = setTimeout(contadorTiempo, 1000);
+  }
+  var temporizador = function () {
+      var $timer,
+              tiempo = 1000;
+      incrementador = 70,
+              actualizarTiempo = function () {
+                  $timer.html(formatTime(tiempo));
+                  if (tiempo === 0) {
+                      temporizador.Timer.stop();
+                      return;
+                  }
+                  tiempo -= incrementador / 10;
+                  if (tiempo < 0) {
+                      tiempo = 0;
+                      tiempoCompleto();
+                  }
 
+              },
+              tiempoCompleto = function () {
+                  alert('Tiempo completado');
+              },
+              init = function () {
+                  $timer = $('#timer');
+                  temporizador.Timer = $.timer(actualizarTiempo, incrementador, true);
+              };
+      this.restaurarTiempo = function () {
+          temporizador.Timer = $.timer();
+      };
+      $(init);
+
+  };
 
 })
+// variable
+var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
+var numimagenes = imagenes.length;
+var puntuacion = [10, 50, 75, 100, 150, 200, 250,300,325,350,375,400,425,450];
+var imgpuesta=0;
+var movimiento = null;
+var dimension=7;
+var matriz =[];
+var arrastre = null;
+var puntos = 0;
+var movimientos = 0;
+var validezImg = 0;
+  });

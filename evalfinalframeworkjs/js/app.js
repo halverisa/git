@@ -4,6 +4,23 @@ $(function(){
 
 // funcion para animar el texto
 
+$(document).ready(function(){
+var bucle;
+  var vueltas = function(){
+    $(".main-titulo").animate({
+     color: "#FFFFFF"
+  }, 1500,function(){
+        $(this).animate({
+          color:"#FFE900"},1500)
+        });
+  }
+  bucle = function(){
+
+    vueltas();
+    setTimeout("bucle();",2000)
+  }
+titulo();
+});
 
 
 //imagenes aleatorias
@@ -359,6 +376,14 @@ function tablero(f, c, obj, src){
                 }
             }
     }
+    var titulo = function () {
+        setInterval(function () {
+            if (indiceColr === colores.length)
+                indiceColr = 0;
+            $('.main-titulo').css('color', colores[indiceColr]);
+            indiceColr++;
+        }, 1000);
+    };
  // funcion para boton iniciar
  $(".btn-reinicio").click(btniniciar);
  function btniniciar(){
@@ -451,6 +476,7 @@ var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
 var numimagenes = imagenes.length;
 var puntuacion = [10, 50, 75, 100, 150, 200, 250,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000,1025,1050,1075,1100];
 var movimiento = null;
+var colores = ['white', 'yellow'];
 var matriz =[];
 var arrastre = null;
-var validezImg = 0, tiempoJuego = 120, tiempoRestante, tiempo, imgpuesta=0, dimension=7, puntos = 0, movimientos = 0;
+var validezImg = 0, tiempoJuego = 120, tiempoRestante, tiempo, imgpuesta=0, dimension=7, indiceColr = 0, puntos = 0, movimientos = 0;

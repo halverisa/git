@@ -140,7 +140,6 @@ function tablero(f, c, obj, src){
      console.log("DIV Inicio Drop: " + movimiento);
 
  }
-// acumular total movimientos
  function actualizarMovimientos() {
      $('#movimientos-text').html(movimientos);
     }
@@ -389,7 +388,7 @@ function tablero(f, c, obj, src){
 
                     matriz[f][c].o.off("arrastrarComienzo");
                     matriz[f][c].o.off("soltarEvento");
-                    matriz[f][c].o.off("DragStop");
+                    matriz[f][c].o.off("handleDragStop");
 
 
                     matriz[f][c].respawn = false; // respawned!

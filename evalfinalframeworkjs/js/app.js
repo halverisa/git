@@ -42,18 +42,21 @@ $(document).ready(function(){
 })*/
 var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
 var numimagenes = imagenes.length;
-var imgpuesta
+var imgpuesta=0;
 
 $(function(){
 
 //imagenes aleatorias
   function imagenAleatoria() {
-      var imgpuesta = Math.floor((Math.random() * numimagenes));
+      imgpuesta = Math.floor((Math.random() * numimagenes));
+      alert(imgpuesta);
       return imagenes[imgpuesta];
+
   }
 // funcion crear tablero de imagenes
  function creardivs() {
-   $(".col-1, .col-4, .col-7").html("<div class= 'cuadro'><img src=image/"+numimagenes+".png class='elemento'></img></div>");
+   imagenAleatoria();
+   $(".col-1, .col-4, .col-7").html("<div class= 'cuadro'><img src=image/"+imgpuesta+".png class='elemento'></img></div>");
  }
 
  // funcion para boton iniciar

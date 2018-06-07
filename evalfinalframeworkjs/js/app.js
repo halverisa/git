@@ -449,7 +449,7 @@ function final() {
 // variable
 var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
 var numimagenes = imagenes.length;
-var puntuacion = [10, 50, 75, 100, 150, 200, 250,300,325,350,375,400,425,450];
+var puntuacion = [10, 50, 75, 100, 150, 200, 250,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000,1025,1050,1075,1100];
 var movimiento = null;
 var matriz =[];
 var arrastre = null;

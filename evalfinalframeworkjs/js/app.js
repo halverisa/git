@@ -15,31 +15,7 @@ $(document).ready(function(){
   bucle();
 
 });
-
-//funcion para cambiar texto boton iniciar
-/*$(function(){
-  $(".btn-reinicio").click(function(){
-    $(".btn-reinicio").text("Reiniciar");
-    $(".btn-reinicio").click(function(){
-      location.reload();
-    });
-    //generar numero aleatorio
-    var aleatorio = Math.floor(Math.random()*4)+1;
-    var aleatorio1 = Math.floor(Math.random()*4)+1;
-    var aleatorio2 = Math.floor(Math.random()*4)+1;
-    var aleatorio3 = Math.floor(Math.random()*4)+1;
-    var aleatorio4 = Math.floor(Math.random()*4)+1;
-    $(".cuadro, .elemento, .panel-tablero").draggable({
-      grid: [120,90],
-      revert: "valid"
-    });
-    // cargar div con imagenes
-     $(".col-1, .col-4, .col-7").html("<div class= 'cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>"+"<div class= 'cuadro'><img src=image/"+aleatorio1+".png class='elemento' class=dulce></img></div>"+ "<div class='cuadro'><img src=image/"+aleatorio2+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio4+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio1+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio4+".png class='elemento'></img></div>");
-    //$(".col-2, .col-5").html("<div class='cuadro'><img src=image/"+aleatorio4+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio3+".png class='elemento'></img></div>"+ "<div class='cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio2+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio1+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio4+".png class='elemento'></img></div>");
-    // $(".col-3, .col-6").html("<div><img src=image/"+aleatorio2+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>"+ "<div class='cuadro'><img src=image/"+aleatorio1+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio3+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio4+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio2+".png class='elemento'></img></div>"+"<div class='cuadro'><img src=image/"+aleatorio+".png class='elemento'></img></div>");
-
-  })
-})*/
+//variables globales
 var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
 var numimagenes = imagenes.length;
 var imgpuesta=0;
@@ -49,13 +25,13 @@ var matriz =[];
 $(function(){
 
 //imagenes aleatorias
-  function imagenAleatoria() {
+  function imgaleatoria() {
       imgpuesta = Math.floor((Math.random() * numimagenes));
       return imagenes[imgpuesta];
 
   }
 // funcion crear tablero de imagenes
-function juego(f, c, obj, src)
+function tablero(f, c, obj, src)
 {
     return {
         f: f,
@@ -71,7 +47,7 @@ function juego(f, c, obj, src)
          matriz[f] = [];
          for (var c = 0; c < dimension; c++) {
 
-             matriz[f][c] = new juego(f, c, null, imagenAleatoria());
+             matriz[f][c] = new tablero(f, c, null, imgaleatoria());
 
              var celda = $('#img_' + f + '_' + c).html("<img class='elemento' src='" + matriz[f][c].fuente + "' alt='" + f + "," + c + "'/>");
              matriz[f][c].o = celda;

@@ -1,22 +1,8 @@
-$(document).ready(function(){
+
 
 $(function(){
 
 // funcion para animar el texto
-
-    var vueltas = function(){
-      $(".main-titulo").animate({
-       color: "#FFFFFF"
-    }, 1500,function(){
-          $(this).animate({
-            color:"#FFE900"},1500)
-          });
-    }
-    var bucle = function(){
-      vueltas();
-      setTimeout("bucle();",2000)
-    }
-    bucle();
 
 
 
@@ -76,46 +62,28 @@ function tablero(f, c, obj, src){
 
  function arrastrarComienzo(event, ui) {
      movimiento = event.target.id;
-     console.log("Div Inicio Start :" + movimiento);
  }
 
  function DragStop(event, ui) {
-
-     console.log('DIV Final: "' + arrastre);
-     console.log("DIV Inicial: " + movimiento);
-
      var src = movimiento.split("_");
-
      var sf = src[1];
      var sc = src[2];
-
      var dst = arrastre.split("_");
-
      var df = dst[1];
      var dc = dst[2];
-
      var ddx = Math.abs(parseInt(sf) - parseInt(df));
      var ddy = Math.abs(parseInt(sc) - parseInt(dc));
-
-     if (ddx > 1 || ddy > 1)
-     {
-         console.log("Distancia invalida > 1");
+     if (ddx > 1 || ddy > 1) {
          return;
      }
-
      if (sf !== df && sc !== dc) {
-         console.log("Movimiento invalido...");
          return;
      }
-
-     console.log("swap " + sf + "," + sc + " to " + df + "," + dc);
-
      var tmp = matriz[sf][sc].fuente;
      matriz[sf][sc].fuente = matriz[df][dc].fuente;
      matriz[sf][sc].o.html("<img class='elemento'src='" + matriz[sf][sc].fuente + "' alt='" + sf + "," + sc + "'/>");
      matriz[df][dc].fuente = tmp;
      matriz[df][dc].o.html("<img class='elemento'src='" + tmp + "' alt='" + df + "," + dc + "'/>");
-
      movimientos += 1;
      movimiento = null;
      arrastre = null;
@@ -126,8 +94,6 @@ function tablero(f, c, obj, src){
  function soltarEvento(event, ui) {
      //var draggable = ui.draggable; // a donde llega el div a mover
      arrastre = event.target.id;
-     console.log('DIV Final Drop: "' + arrastre + '"!');
-     console.log("DIV Inicio Drop: " + movimiento);
 
  }
 // acumular total movimientos
@@ -160,7 +126,6 @@ function tablero(f, c, obj, src){
                         {
                             validezImg += 1;
                             figFin = c - 1;
-                            console.log("Combo Horizontal de " + figInicio + " a " + figFin + "!");
                             for (var ci = figInicio; ci <= figFin; ci++)
                             {
                                 matriz[f][ci].enCombo = true;
@@ -181,7 +146,6 @@ function tablero(f, c, obj, src){
                             {
                                 validezImg += 1;
                                 figFin = c;
-                                console.log("Combo Horizontal de " + figInicio + " a " + figFin + "!");
                                 for (var ci = figInicio; ci <= figFin; ci++)
                                 {
                                     matriz[f][ci].enCombo = true;
@@ -212,18 +176,15 @@ function tablero(f, c, obj, src){
             var figInicio = null;
             var figFin = null;
 
-            for (var f = 0; f < dimension; f++)
-            {
-                if (matriz[f][c].enCombo)
-                {
+            for (var f = 0; f < dimension; f++){
+                if (matriz[f][c].enCombo){
                     figInicio = null;
                     figFin = null;
                     prevCelda = null;
                     figLongitud = 1;
                     continue;
                 }
-                if (prevCelda === null)
-                {
+                if (prevCelda === null){
                     prevCelda = matriz[f][c].fuente;
                     figInicio = f;
                     figLongitud = 1;
@@ -232,15 +193,11 @@ function tablero(f, c, obj, src){
                 } else
                 {
                     var curCell = matriz[f][c].fuente;
-                    if (!(prevCelda === curCell))
-                    {
-                        if (figLongitud >= 3)
-                        {
+                    if (!(prevCelda === curCell)){
+                        if (figLongitud >= 3)  {
                             validezImg += 1;
                             figFin = f - 1;
-                            console.log("Combo vertical de " + figInicio + " a " + figFin + "!");
-                            for (var ci = figInicio; ci <= figFin; ci++)
-                            {
+                            for (var ci = figInicio; ci <= figFin; ci++){
                                 matriz[ci][c].enCombo = true;
                                 matriz[ci][c].fuente = null;
                             }
@@ -256,13 +213,10 @@ function tablero(f, c, obj, src){
                     {
                         figLongitud += 1;
                         if (f === (dimension - 1)) {
-                            if (figLongitud >= 3)
-                            {
+                            if (figLongitud >= 3)  {
                                 validezImg += 1;
                                 figFin = f;
-                                console.log("Combo vertical de " + figInicio + " a " + figFin + "!");
-                                for (var ci = figInicio; ci <= figFin; ci++)
-                                {
+                                for (var ci = figInicio; ci <= figFin; ci++)  {
                                     matriz[ci][c].enCombo = true;
                                     matriz[ci][c].fuente = null;
                                 }
@@ -281,25 +235,20 @@ function tablero(f, c, obj, src){
                         }
                     }
                 }
-
             }
         }
 
         var esCombo = false;
         for (var f = 0; f < dimension; f++) {
             for (var c = 0; c < dimension; c++)
-                if (matriz[f][c].enCombo)
-                {
-                    console.log("Combo para eliminar: " + f + ',' + c);
+                if (matriz[f][c].enCombo){
                     esCombo = true;
                 }
         }
-
         if (esCombo){
             eliminarImagenes();
         }
         else {
-            console.log("NO COMBO");
         }
         mostrarImagenes();
     }
@@ -321,7 +270,7 @@ function tablero(f, c, obj, src){
             eliminarMemoriaCache();
          });
 
-        console.log("finaliza aqui en eliminarImagenes");
+
     }
 
   function actualizarPuntos() {
@@ -358,37 +307,21 @@ function tablero(f, c, obj, src){
 
         }
 
-        console.log("Fin de movimiento");
-
-        //redibujando la grilla
-        //y configurando el respawn
-
-        //Reseteando las celdas
-        for (var f = 0; f < dimension; f++)
-        {
-            for (var c = 0; c < dimension; c++)
-            {
+        for (var f = 0; f < dimension; f++){
+            for (var c = 0; c < dimension; c++){
                 matriz[f][c].o.html("<img class='elemento' src='" + matriz[f][c].fuente + "' alt='" + f + "," + c + "'/>");
                 matriz[f][c].o.css("opacity", 1);
                 matriz[f][c].enCombo = false;
                 if (matriz[f][c].fuente === null)
                     matriz[f][c].respawn = true;
 
-                if (matriz[f][c].respawn === true)
-                {
-
+                if (matriz[f][c].respawn === true){
                     matriz[f][c].o.off("arrastrarComienzo");
                     matriz[f][c].o.off("soltarEvento");
                     matriz[f][c].o.off("DragStop");
-
-
-                    matriz[f][c].respawn = false; // respawned!
-                    console.log("Respawning " + f + "," + c);
+                    matriz[f][c].respawn = false;
                     matriz[f][c].fuente = imgaleatoria();
-
                     matriz[f][c].o.html("<img class='elemento' src='" + matriz[f][c].fuente + "' alt='" + f + "," + c + "'/>");
-
-
                     matriz[f][c].o.draggable(
                             {
                                 containment: '.panel-tablero',
@@ -412,11 +345,9 @@ function tablero(f, c, obj, src){
             }
         }
 
-        console.log("Combo reseteados y recreados.");
         // Verifica si existen otros combos
         mostrarImagenes();
         eliminacionCorrecta();
-        console.log("finaliza aqui en eliminarMemoriaCache");
         mostrarImagenes();
     }
 
@@ -424,12 +355,10 @@ function tablero(f, c, obj, src){
           for (var f = 0; f < dimension; f++){
                 for (var c = 0; c < dimension; c++){
                     if (matriz[f][c].o.css("opacity")===0)
-                        console.log("Imagen invisible: " + f+','+c);
                     matriz[f][c].o.css("opacity", 1);
                 }
             }
     }
-
  // funcion para boton iniciar
  $(".btn-reinicio").click(btniniciar);
  function btniniciar(){
@@ -438,20 +367,22 @@ function tablero(f, c, obj, src){
      creartablero();
      activarMovimientos();
      eliminacionCorrecta();
+     iniciarTiempo();
      $('.btn-reinicio').click(function(){
        location.reload();
      })
   }
-  // Temporizador
+
+  // reloj cuenta atras para el juego
   function contadorTiempo() {
       tiempoRestante -= 1;
-      console.log(tiempoRestante);
       actualizarTiempo();
       if (tiempoRestante === 0) {
-          return finalizacion();
+          return final();
       }
       tiempo = setTimeout(contadorTiempo, 1000);
   }
+
   function actualizarTiempo() {
       $('#timer').html(formatoTiempo(tiempoRestante));
   }
@@ -460,6 +391,7 @@ function tablero(f, c, obj, src){
       tiempoRestante = tiempoJuego;
       tiempo = setTimeout(contadorTiempo, 1000);
   }
+
   var temporizador = function () {
       var $timer,
               tiempo = 1000;
@@ -475,7 +407,6 @@ function tablero(f, c, obj, src){
                       tiempo = 0;
                       tiempoCompleto();
                   }
-
               },
               tiempoCompleto = function () {
                   alert('Tiempo completado');
@@ -488,20 +419,38 @@ function tablero(f, c, obj, src){
           temporizador.Timer = $.timer();
       };
       $(init);
-
   };
+// funcion para animacion de terminacion tiempoJuego
+function final() {
+    $('.panel-tablero').slideToggle("slow", function () {
+        $('.time').hide();
+        $('.finalizacion').show();
+        $('.panel-score').css({'width': '100%'});
+        $('.panel-score').resize({
+            animate: true
+        });
+    });
+}
 
+  function pad(number, length) {
+      var str = '' + number;
+      while (str.length < length) {
+          str = '0' + str;
+      }
+      return str;
+  }
+
+  function formatoTiempo(time) {
+      var min = parseInt(time / 60),
+              sec = time - (min * 60);
+      return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2);
+  }
 })
 // variable
 var imagenes = ["image/1.png","image/2.png", "image/3.png", "image/4.png"];
 var numimagenes = imagenes.length;
 var puntuacion = [10, 50, 75, 100, 150, 200, 250,300,325,350,375,400,425,450];
-var imgpuesta=0;
 var movimiento = null;
-var dimension=7;
 var matriz =[];
 var arrastre = null;
-var puntos = 0;
-var movimientos = 0;
-var validezImg = 0;
-  });
+var validezImg = 0, tiempoJuego = 120, tiempoRestante, tiempo, imgpuesta=0, dimension=7, puntos = 0, movimientos = 0;
